@@ -7110,8 +7110,7 @@ uint32 Player::GetLevelFromDB(ObjectGuid guid)
 
 void Player::UpdateArea(uint32 newArea)
 {
-    if (Map* map = GetMap())
-        map->UpdatePlayerAreaStats(m_areaUpdateId, newArea);
+    GetMap()->UpdatePlayerAreaStats(m_areaUpdateId, newArea);
 
     // FFA_PVP flags are area and not zone id dependent
     // so apply them accordingly
@@ -7155,8 +7154,7 @@ void Player::UpdateZone(uint32 newZone, uint32 newArea)
             guild->UpdateMemberData(this, GUILD_MEMBER_DATA_ZONEID, newZone);
     }
 
-    if (Map* map = GetMap())
-        map->UpdatePlayerZoneStats(m_zoneUpdateId, newZone);
+    GetMap()->UpdatePlayerZoneStats(m_zoneUpdateId, newZone);
 
     // group update
     if (GetGroup())
